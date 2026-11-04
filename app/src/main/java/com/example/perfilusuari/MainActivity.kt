@@ -30,9 +30,12 @@ class MainActivity : AppCompatActivity() {
 
         btnSend.setOnClickListener {
             val nextPantalla = Intent(this, PerfilUsuari::class.java)
-            nextPantalla.putExtra("NOM_USER", nomUser.toString())
-
-
+            nextPantalla.putExtra("USER", nomUser.text.toString())
+            nextPantalla.putExtra("NOM", nom.text.toString())
+            nextPantalla.putExtra("COGNOM", cognom.text.toString())
+            nextPantalla.putExtra("EMAIL", email.text.toString())
+            nextPantalla.putExtra("BIO", bio.text.toString())
+            nextPantalla.putExtra("URL", url.text.toString())
 
             startActivity(nextPantalla)
         }

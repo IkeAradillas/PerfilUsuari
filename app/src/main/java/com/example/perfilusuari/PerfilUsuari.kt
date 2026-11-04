@@ -8,11 +8,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class PerfilUsuari : AppCompatActivity() {
-    lateinit var nomUser:String
-    lateinit var textView: TextView
-    fun text() = "Nombre de usuario: $nomUser"
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,11 +18,16 @@ class PerfilUsuari : AppCompatActivity() {
             insets
         }
 
-        textView = findViewById(R.id.textView)
+        val user = findViewById<TextView>(R.id.user)
+        val nomcognom = findViewById<TextView>(R.id.nomcognom)
+        val email = findViewById<TextView>(R.id.email)
+        val bio = findViewById<TextView>(R.id.bio)
 
-        nomUser = intent.getStringExtra("NOM_USER")!!
 
-        textView.text = text()
+        intent.getStringExtra("USER").apply { user.text = "$this" }
+        intent.getStringExtra("NOM" + " " + "COGNOM").apply { nomcognom.text = "$this" }
+        intent.getStringExtra("EMAIL").apply { email.text = "$this" }
+        intent.getStringExtra("BIO").apply { bio.text = "$this" }
 
     }
 }
