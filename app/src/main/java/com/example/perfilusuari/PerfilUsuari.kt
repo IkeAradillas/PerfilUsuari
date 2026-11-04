@@ -1,11 +1,14 @@
 package com.example.perfilusuari
 
+
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 
 class PerfilUsuari : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,12 +25,15 @@ class PerfilUsuari : AppCompatActivity() {
         val nomcognom = findViewById<TextView>(R.id.nomcognom)
         val email = findViewById<TextView>(R.id.email)
         val bio = findViewById<TextView>(R.id.bio)
-
+        var url = findViewById<ImageView>(R.id.Imagen)
 
         intent.getStringExtra("USER").apply { user.text = "$this" }
-        intent.getStringExtra("NOM" + " " + "COGNOM").apply { nomcognom.text = "$this" }
+        val nom = intent.getStringExtra("NOM")
+        intent.getStringExtra("COGNOM").apply { nomcognom.text = "$nom $this" }
+
         intent.getStringExtra("EMAIL").apply { email.text = "$this" }
         intent.getStringExtra("BIO").apply { bio.text = "$this" }
 
+        Glide.with(url).load(intent.getStringExtra("URL")).into(url)
     }
 }
