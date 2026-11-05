@@ -20,13 +20,28 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val nomUser = findViewById<EditText>(R.id.etNomUser)
-        val nom = findViewById<EditText>(R.id.etNombre)
-        val cognom = findViewById<EditText>(R.id.etApellidos)
-        val email = findViewById<EditText>(R.id.etEmail)
-        val bio = findViewById<EditText>(R.id.etBio)
-        val url = findViewById<EditText>(R.id.etUrl)
-        val btnSend = findViewById<Button>(R.id.Enviar)
+        var nomUser = findViewById<EditText>(R.id.etNomUser)
+        var nom = findViewById<EditText>(R.id.etNombre)
+        var cognom = findViewById<EditText>(R.id.etApellidos)
+        var email = findViewById<EditText>(R.id.etEmail)
+        var bio = findViewById<EditText>(R.id.etBio)
+        var url = findViewById<EditText>(R.id.etUrl)
+        var btnSend = findViewById<Button>(R.id.Enviar)
+
+        val user = intent.getStringExtra("USER")
+        val nombre = intent.getStringExtra("NOM")
+        val apellido =intent.getStringExtra("COGNOM")
+        val mail = intent.getStringExtra("EMAIL")
+        val biog = intent.getStringExtra("BIO")
+        val urlImg = intent.getStringExtra("URL")
+
+        nomUser.setText(user)
+        nom.setText(nombre)
+        cognom.setText(apellido)
+        email.setText(mail)
+        bio.setText(biog)
+        url.setText(urlImg)
+
 
         btnSend.setOnClickListener {
             val nextPantalla = Intent(this, PerfilUsuari::class.java)

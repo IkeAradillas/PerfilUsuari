@@ -26,6 +26,7 @@
         android:layout_height="33dp"
         android:text="USUARIO"
         android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/nomcognom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.599"
@@ -51,7 +52,7 @@
         android:id="@+id/titBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TITULO Biografia"
+        android:text="Biografía"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,5 +85,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.068"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btnEditInfo"
+        android:layout_width="132dp"
+        android:layout_height="84dp"
+        android:text="Editar información del perfil"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.723" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
