@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,13 +21,13 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        var nomUser = findViewById<EditText>(R.id.etNomUser)
-        var nom = findViewById<EditText>(R.id.etNombre)
-        var cognom = findViewById<EditText>(R.id.etApellidos)
-        var email = findViewById<EditText>(R.id.etEmail)
-        var bio = findViewById<EditText>(R.id.etBio)
-        var url = findViewById<EditText>(R.id.etUrl)
-        var btnSend = findViewById<Button>(R.id.Enviar)
+        val nomUser = findViewById<EditText>(R.id.etNomUser)
+        val nom = findViewById<EditText>(R.id.etNombre)
+        val cognom = findViewById<EditText>(R.id.etApellidos)
+        val email = findViewById<EditText>(R.id.etEmail)
+        val bio = findViewById<EditText>(R.id.etBio)
+        val url = findViewById<EditText>(R.id.etUrl)
+        val btnSend = findViewById<Button>(R.id.Enviar)
 
         val user = intent.getStringExtra("USER")
         val nombre = intent.getStringExtra("NOM")
@@ -44,18 +45,30 @@ class MainActivity : AppCompatActivity() {
 
 
         btnSend.setOnClickListener {
-            val nextPantalla = Intent(this, PerfilUsuari::class.java)
-            nextPantalla.putExtra("USER", nomUser.text.toString())
-            nextPantalla.putExtra("NOM", nom.text.toString())
-            nextPantalla.putExtra("COGNOM", cognom.text.toString())
-            nextPantalla.putExtra("EMAIL", email.text.toString())
-            nextPantalla.putExtra("BIO", bio.text.toString())
-            nextPantalla.putExtra("URL", url.text.toString())
+            if (comprobarNull(nomUser) || comprobarNull(nom) || comprobarNull(cognom) || comprobarNull(email) || comprobarNull(bio) || comprobarNull(url)){
+                Toast.makeText(this, "Rellena todos los campos!", Toast.LENGTH_SHORT).show()
+            }
+            else if(nomUser.text.length >18) Toast.makeText(this, "Nombre de usuario con mas de 18 caracteres, escoja uno mas corto", Toast.LENGTH_SHORT).show()
+            else if(!email.text.toString().contains("@")) Toast.makeText(this, "Introduce un email valido! No contiene el \"@\"", Toast.LENGTH_SHORT).show()
+            else {
+                val nextPantalla = Intent(this, PerfilUsuari::class.java)
+                nextPantalla.putExtra("USER", nomUser.text.toString())
+                nextPantalla.putExtra("NOM", nom.text.toString())
+                nextPantalla.putExtra("COGNOM", cognom.text.toString())
+                nextPantalla.putExtra("EMAIL", email.text.toString())
+                nextPantalla.putExtra("BIO", bio.text.toString())
+                nextPantalla.putExtra("URL", url.text.toString())
 
-            startActivity(nextPantalla)
+                startActivity(nextPantalla)
+            }
+
         }
 
 
 
+    }
+
+    fun comprobarNull(a: EditText) : Boolean{
+        return a.text.toString().isEmpty()
     }
 }

@@ -43,7 +43,6 @@ class PerfilUsuari : AppCompatActivity() {
 
         btnEdit.setOnClickListener {
             val nextPantalla = Intent(this, MainActivity::class.java)
-            comprobarEmail(email.text.toString())
             nextPantalla.putExtra("USER", user.text.toString())
             nextPantalla.putExtra("NOM", nom)
             nextPantalla.putExtra("COGNOM", cognom)
@@ -51,16 +50,12 @@ class PerfilUsuari : AppCompatActivity() {
             nextPantalla.putExtra("BIO", bio.text.toString())
             nextPantalla.putExtra("URL", intent.getStringExtra("URL"))
             startActivity(nextPantalla)
+
         }
 
     }
 
-    fun comprobarEmail(email: String) {
-        if (!email.contains("@")) Toast.makeText(
-            this, "Introduce un email valido! No contiene el \"@\"",
-            Toast.LENGTH_SHORT
-        ).show()
-    }
+
 
 }
 
